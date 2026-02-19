@@ -92,7 +92,7 @@ class _WordleGameState extends State<WordleGame> {
 
     checkWord(guess);
 
-    // 🟢 If correct word → end game
+    //  If correct word → end game
     if (guess == actualWord) {
       isGameOver = true;
     } else {
@@ -137,7 +137,7 @@ class _WordleGameState extends State<WordleGame> {
           alignment: Alignment.center,
           decoration: BoxDecoration(
             color: colors[row][col],
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(20),
             border: Border.all(color: Colors.black12),
           ),
           child: Text(
@@ -155,41 +155,41 @@ class _WordleGameState extends State<WordleGame> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(50),
-          child: Column(
-            children: [
-              // Grid 4 x 4
-              buildGrid(),
-              const SizedBox(height: 10),
-              // Input Field
-              TextField(
-                controller: controller,
-                enabled: !isGameOver,
-                maxLength: 4,
-                textCapitalization: TextCapitalization.characters,
-                decoration: const InputDecoration(
-                  hintText: "Enter 4 letter word",
-                  border: OutlineInputBorder(),
-                ),
+      body: Padding(
+        padding: const EdgeInsets.all(50),
+        child: Column(
+          children: [
+            Expanded(child: buildGrid()),
+            const SizedBox(height: 10),
+            // Input Field
+            TextField(
+              controller: controller,
+              enabled: !isGameOver,
+              maxLength: 4,
+              textCapitalization: TextCapitalization.characters,
+              decoration: const InputDecoration(
+                hintText: "Enter 4 letter word",
+                border: OutlineInputBorder(),
               ),
-              // Submit Button
-              Row(
-                children: [
-                  ElevatedButton(
-                onPressed: submitWord,
-                child: const Text("Submit"),
-              ),
-                  const SizedBox(width: 50),
-              ElevatedButton(
-                onPressed: resetGame,
-                child: const Text("New Game"),
-              ),
-                  ]
-              )
-            ],
-          ),
+            ),
+
+            // Submit Button
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+              onPressed: submitWord,
+              child: const Text("Submit"),
+            ),
+                const SizedBox(width: 50),
+            ElevatedButton(
+              onPressed: resetGame,
+              child: const Text("Restart"),
+            ),
+                ]
+            )
+          ],
         ),
       ),
     );
